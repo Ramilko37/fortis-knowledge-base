@@ -1,25 +1,25 @@
-# Fortis Knowledge Base Index
+# Индекс базы знаний Fortis
 
-## Start Here
+## Начать здесь
 
-- [[Welcome]]
+- [[Welcome|Добро пожаловать]]
 - [[С чего начинаем]]
 - [[Ресурсы]]
 
-## Core Areas
+## Основные разделы
 
-- Product
-- Domain
-- Architecture
-- Design
-- Research
-- Meetings
-- Inbox
+- Продукт
+- Предметная область
+- Архитектура
+- Дизайн
+- Исследования
+- Встречи
+- Входящие
 
-## Durable Decisions
+## Долгосрочные решения
 
-Record durable architecture and product decisions as ADR notes when they affect more than one repository or shape future implementation.
+Фиксируйте долгосрочные архитектурные и продуктовые решения в формате ADR, если они затрагивают больше одного репозитория или влияют на будущую реализацию.
 
-- [[03_Architecture/ADR-0001-frontend-owned-by-parent-repository|ADR-0001: Frontend Owned by Parent Repository]]
-- [[03_Architecture/ADR-0002-knowledge-base-owned-by-parent-repository|ADR-0002: Knowledge Base Owned by Parent Repository]]
-- [[03_Architecture/ADR-0003-return-to-submodules|ADR-0003: Return to Submodules]]
+- [[03_Architecture/ADR-0001-frontend-owned-by-parent-repository|ADR-0001: фронтенд принадлежит родительскому репозиторию]]
+- [[03_Architecture/ADR-0002-knowledge-base-owned-by-parent-repository|ADR-0002: база знаний принадлежит родительскому репозиторию]]
+- [[03_Architecture/ADR-0003-return-to-submodules|ADR-0003: возврат к сабмодулям]]

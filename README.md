@@ -1,8 +1,7 @@
-# Fortis Knowledge Base
+# База знаний Fortis
 
-Obsidian-compatible knowledge base for the Fortis project.
+Obsidian-совместимая база знаний проекта Fortis.
 
-Use this repository as the durable project context source: product decisions, domain vocabulary, architecture notes, UX principles, backend/frontend contracts, meeting notes, and open questions.
+Используйте этот репозиторий как долговременный источник контекста проекта: продуктовые решения, терминологию предметной области, архитектурные заметки, UX-принципы, контракты backend/frontend, заметки встреч и открытые вопросы.
 
-Start from `00_Index.md`.
-
+Начинайте с `00_Index.md`.

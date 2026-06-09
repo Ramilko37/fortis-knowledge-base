@@ -1,23 +1,22 @@
-# Non-Functional Requirements
+# Нефункциональные требования
 
-## Purpose
+## Назначение
 
-This note tracks non-functional requirements for Fortis.
+Эта заметка фиксирует нефункциональные требования для Fortis.
 
-## Initial Categories
+## Первичные категории
 
-- Performance
-- Security
-- Availability
-- Observability
-- Audit and logging
-- Data retention
-- Deployment constraints
-- Frontend responsiveness
-- Backend reliability
-- Model and API rate limits
+- Производительность
+- Безопасность
+- Доступность
+- Наблюдаемость
+- Аудит и логирование
+- Хранение данных
+- Ограничения развертывания
+- Адаптивность фронтенда
+- Надежность backend
+- Лимиты моделей и API
 
-## Neuraldeep API Rate Limit
+## Лимит запросов Neuraldeep API
 
-Integrations routed through `neuraldeep.api` must target no more than 4 requests per minute and avoid polling more often than every 30 seconds.
-
+Интеграции, маршрутизируемые через `neuraldeep.api`, должны ориентироваться не более чем на 4 запроса в минуту и не выполнять polling чаще одного раза в 30 секунд.

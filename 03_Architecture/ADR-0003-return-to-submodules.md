@@ -1,32 +1,32 @@
-# ADR-0003: Return to Submodules
+# ADR-0003: возврат к сабмодулям
 
-## Status
+## Статус
 
-Accepted
+Принято
 
-## Date
+## Дата
 
 2026-06-09
 
-## Context
+## Контекст
 
-The workspace briefly moved `frontend/` and `knowledge-base/` into the parent repository to simplify development.
+Workspace ненадолго перенес `frontend/` и `knowledge-base/` в родительский репозиторий, чтобы упростить разработку.
 
-The project direction changed again: frontend, backend, and knowledge base should keep separate Git histories while the parent workspace coordinates their selected versions.
+Направление проекта снова изменилось: frontend, backend и база знаний должны сохранять отдельные Git-истории, а родительский workspace должен координировать выбранные версии.
 
-## Decision
+## Решение
 
-Track these directories as Git submodules in the parent Fortis workspace:
+Отслеживать следующие директории как Git-сабмодули в родительском Fortis workspace:
 
-- `frontend/` from `Ramilko37/fortis-front`
-- `backend/` from `Ramilko37/fortis-back`
-- `knowledge-base/` from `Ramilko37/fortis-knowledge-base`
+- `frontend/` из `Ramilko37/fortis-front`
+- `backend/` из `Ramilko37/fortis-back`
+- `knowledge-base/` из `Ramilko37/fortis-knowledge-base`
 
-The parent repository stores workspace-level instructions and submodule pointers.
+Родительский репозиторий хранит инструкции уровня workspace и указатели на сабмодули.
 
-## Consequences
+## Последствия
 
-- Contributors must initialize submodules after cloning the parent workspace.
-- Changes inside `frontend/`, `backend/`, or `knowledge-base/` must be committed and pushed in the child repository first.
-- The parent workspace must then commit the updated submodule pointer.
-- Frontend, backend, and knowledge-base histories remain independent.
+- Участники должны инициализировать сабмодули после клонирования родительского workspace.
+- Изменения внутри `frontend/`, `backend/` или `knowledge-base/` сначала нужно коммитить и пушить в дочернем репозитории.
+- Затем родительский workspace должен закоммитить обновленный указатель сабмодуля.
+- Истории frontend, backend и базы знаний остаются независимыми.

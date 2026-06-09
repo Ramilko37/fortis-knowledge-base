@@ -1,16 +1,15 @@
-# Fortis Knowledge Base Instructions
+# Инструкции для базы знаний Fortis
 
-This repository is the long-term context source for the Fortis project.
+Этот репозиторий является долгосрочным источником контекста для проекта Fortis.
 
-Before making product, architecture, UX, domain, or integration decisions:
+Перед принятием продуктовых, архитектурных, UX-, доменных или интеграционных решений:
 
-1. Read `00_Index.md`.
-2. Check relevant notes in product, domain, architecture, design, and research areas.
-3. Update the knowledge base when durable decisions are made.
+1. Прочитайте `00_Index.md`.
+2. Проверьте релевантные заметки в разделах продукта, предметной области, архитектуры, дизайна и исследований.
+3. Обновляйте базу знаний, когда принимаются долгосрочные решения.
 
-Use Markdown compatible with Obsidian.
+Используйте Markdown, совместимый с Obsidian.
 
-Prefer Obsidian links where useful, for example `[[Glossary]]` or `[[Architecture Overview]]`.
+По возможности используйте Obsidian-ссылки, например `[[Глоссарий]]` или `[[Обзор архитектуры]]`.
 
-Do not store secrets, credentials, private keys, or production tokens.
-
+Не храните секреты, учетные данные, приватные ключи или production-токены.

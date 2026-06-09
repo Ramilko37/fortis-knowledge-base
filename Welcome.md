@@ -1,5 +1,7 @@
-This is your new *vault*.
+# Добро пожаловать
 
-Make a note of something, [[create a link]], or try [the Importer](https://help.obsidian.md/Plugins/Importer)!
+Это стартовое пространство базы знаний Fortis.
 
-When you're ready, delete this note and make the vault your own.
+Используйте его для долгосрочного проектного контекста: решений, требований, архитектурных заметок, терминов, встреч и открытых вопросов.
+
+Начните с [[00_Index|индекса базы знаний]].

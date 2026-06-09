@@ -1,28 +1,28 @@
-# ADR-0001: Frontend Owned by Parent Repository
+# ADR-0001: фронтенд принадлежит родительскому репозиторию
 
-## Status
+## Статус
 
-Accepted
+Принято
 
-## Date
+## Дата
 
 2026-06-09
 
-## Context
+## Контекст
 
-The Fortis workspace previously tracked `frontend/` as a Git submodule pointing to `Ramilko37/awesome-project`.
+Ранее workspace Fortis отслеживал `frontend/` как Git-сабмодуль, указывающий на `Ramilko37/awesome-project`.
 
-The project direction changed: Fortis frontend development should now happen directly in the Fortis workspace repository, without depending on or referencing the previous `awesome-project` remote.
+Направление проекта изменилось: разработка фронтенда Fortis должна была происходить напрямую в репозитории Fortis workspace, без зависимости от прежнего remote `awesome-project` и без ссылок на него.
 
-## Decision
+## Решение
 
-Track `frontend/` directly in the parent Fortis repository instead of as a Git submodule.
+Отслеживать `frontend/` напрямую в родительском репозитории Fortis вместо Git-сабмодуля.
 
-At the time of this decision, `knowledge-base/` remained an independent submodule. It was later moved into the parent repository by [[03_Architecture/ADR-0002-knowledge-base-owned-by-parent-repository|ADR-0002]].
+На момент этого решения `knowledge-base/` оставалась независимым сабмодулем. Позже она была перенесена в родительский репозиторий решением [[03_Architecture/ADR-0002-knowledge-base-owned-by-parent-repository|ADR-0002]].
 
-## Consequences
+## Последствия
 
-- Frontend changes are committed in the parent Fortis repository.
-- The parent repository now owns the frontend source tree.
-- The old `Ramilko37/awesome-project` remote is no longer part of the active workspace configuration.
-- Cross-repository coordination was still needed for `knowledge-base/` until ADR-0002 moved it into the parent repository.
+- Изменения фронтенда коммитятся в родительский репозиторий Fortis.
+- Родительский репозиторий владеет исходным деревом фронтенда.
+- Старый remote `Ramilko37/awesome-project` больше не является частью активной конфигурации workspace.
+- Координация между репозиториями все еще была нужна для `knowledge-base/`, пока ADR-0002 не перенесла ее в родительский репозиторий.

@@ -1,26 +1,26 @@
-# ADR-0002: Knowledge Base Owned by Parent Repository
+# ADR-0002: база знаний принадлежит родительскому репозиторию
 
-## Status
+## Статус
 
-Accepted
+Принято
 
-## Date
+## Дата
 
 2026-06-09
 
-## Context
+## Контекст
 
-The Fortis workspace previously tracked `knowledge-base/` as a Git submodule pointing to `Ramilko37/fortis-knowledge-base`.
+Ранее workspace Fortis отслеживал `knowledge-base/` как Git-сабмодуль, указывающий на `Ramilko37/fortis-knowledge-base`.
 
-After moving `frontend/` into the parent repository, the project direction also changed for durable context: the knowledge base should live directly in the Fortis workspace repository instead of relying on a separate remote.
+После переноса `frontend/` в родительский репозиторий направление проекта изменилось и для долговременного контекста: база знаний должна была жить напрямую в репозитории Fortis workspace, а не зависеть от отдельного remote.
 
-## Decision
+## Решение
 
-Track `knowledge-base/` directly in the parent Fortis repository instead of as a Git submodule.
+Отслеживать `knowledge-base/` напрямую в родительском репозитории Fortis вместо Git-сабмодуля.
 
-## Consequences
+## Последствия
 
-- Knowledge-base changes are committed in the parent Fortis repository.
-- The parent repository now owns both frontend source and durable project context.
-- The old `Ramilko37/fortis-knowledge-base` remote is no longer part of the active workspace configuration.
-- The workspace currently has no active Git submodules.
+- Изменения базы знаний коммитятся в родительский репозиторий Fortis.
+- Родительский репозиторий владеет и исходным кодом фронтенда, и долговременным проектным контекстом.
+- Старый remote `Ramilko37/fortis-knowledge-base` больше не является частью активной конфигурации workspace.
+- В workspace на тот момент не оставалось активных Git-сабмодулей.
