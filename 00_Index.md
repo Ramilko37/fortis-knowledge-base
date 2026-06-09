@@ -23,3 +23,4 @@
 - [[03_Architecture/ADR-0001-frontend-owned-by-parent-repository|ADR-0001: фронтенд принадлежит родительскому репозиторию]]
 - [[03_Architecture/ADR-0002-knowledge-base-owned-by-parent-repository|ADR-0002: база знаний принадлежит родительскому репозиторию]]
 - [[03_Architecture/ADR-0003-return-to-submodules|ADR-0003: возврат к сабмодулям]]
+- [[03_Architecture/ADR-0004-remove-legacy-models-page|ADR-0004: удалить legacy-страницу `/models`]]
