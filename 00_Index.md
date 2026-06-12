@@ -29,3 +29,4 @@
 - [[03_Architecture/ADR-0004-remove-legacy-models-page|ADR-0004: удалить legacy-страницу `/models`]]
 - [[03_Architecture/ADR-0005-defense-project-placement-authority|ADR-0005: единственный источник размещений — DefenseProject]]
 - [[03_Architecture/ADR-0006-frontend-refactoring-boundaries|ADR-0006: границы frontend-рефакторинга без изменения поведения]]
+- [[03_Architecture/ADR-0007-mog-compound-card-in-asset-library|ADR-0007: МОГ как составной объект в существующей библиотеке средств]]
