@@ -322,7 +322,7 @@ Fortis — это ГИС-конструктор защиты объекта от
 
 ## Changelog
 
-### 2026-06-12 — Backend P1 API: closed 4 tickets
+### 2026-06-12 — GIS MVP changelog: closed 5 tickets
 
 Реализован backend для durable GIS MVP. Закрыты тикеты:
 
