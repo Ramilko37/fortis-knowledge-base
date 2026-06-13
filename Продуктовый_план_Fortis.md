@@ -1,7 +1,7 @@
 # Продуктовый план Fortis: GIS MVP
 
 **Дата актуализации:** 2026-06-13  
-**Последнее обновление:** backend P1 API — 10 тикетов closed 13.06.2026
+**Последнее обновление:** FRT-48 frontend integration — asset library BE API connected 13.06.2026
 
 ## Scope decision
 
@@ -173,7 +173,7 @@ Fortis — это ГИС-конструктор защиты объекта от
 
 ### Библиотека установок и карточки
 
-- [x] Пользовательское добавление и редактирование средств в библиотеке (backend: FRT-33 — 13.06.2026).
+- [x] Пользовательское добавление и редактирование средств в библиотеке (backend: FRT-33, frontend: FRT-48 — 13.06.2026).
 - [ ] Базовые поля для всех карточек:
   - наименование;
   - тип;
@@ -367,15 +367,26 @@ Fortis — это ГИС-конструктор защиты объекта от
 | Тикет | Описание | Статус |
 |---|---|---|
 | [FRT-33](https://linear.app/fortis-project/issue/FRT-33) | API библиотеки средств защиты (CRUD) | Done |
-| [FRT-48](https://linear.app/fortis-project/issue/FRT-48) | FE: Интеграция библиотеки с BE API и UI управления карточками | Todo |
+| [FRT-48](https://linear.app/fortis-project/issue/FRT-48) | FE: Интеграция библиотеки с BE API и UI управления карточками | Done |
 
 **Что это даёт продукту:**
 - Backend предоставляет CRUD-эндпоинты для библиотеки средств защиты (`/api/v1/assets`).
 - Разделение общего каталога (`is_public=true`) и пользовательских карточек (`enterprise_id`).
 - JSONB-хранение для гибкой схемы, совместимой с `DefenseProject.assetLibrary`.
+- Frontend `/prototype` загружает библиотеку через same-origin `/api/v1/assets`, а Next proxy направляет запросы на backend `FORTIS_API_BASE_URL` без `trailingSlash`-редиректа.
+- UI управления библиотекой поддерживает создание, редактирование, удаление и fallback на локальную библиотеку при недоступном backend.
+- Контракт единиц измерения зафиксирован: backend DTO хранит дальности в километрах, frontend `DefenseProject.assetLibrary` — в метрах.
 - 22 unit-теста, lint/build — пройдены.
 
-**Следующие шаги (BE):** FRT-34 (детальные карточки), FRT-35 (документы), FRT-36 (стоимость/бюджет), FRT-37 (сравнение), FRT-38 (отчёт).
+**Frontend verification FRT-48:**
+- `pnpm exec tsx src/modules/drone-defense/infra/asset-api-proxy-contract.test.ts`
+- `pnpm exec tsx src/modules/drone-defense/infra/asset-library-api.test.ts`
+- `pnpm exec tsx src/shared/lib/use-defense-project-store.test.ts`
+- `pnpm exec eslint ...`
+- `pnpm build`
+- browser `/prototype`: backend asset появляется в каталоге; при backend unavailable остаётся мягкий fallback.
+
+**Следующие шаги (BE):** FRT-37 (сравнение), FRT-38 (отчёт).
 
 ### 2026-06-13 — FRT-32: версионирование конфигураций
 

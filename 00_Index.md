@@ -30,5 +30,6 @@
 - [[03_Architecture/ADR-0005-defense-project-placement-authority|ADR-0005: единственный источник размещений — DefenseProject]]
 - [[03_Architecture/ADR-0006-frontend-refactoring-boundaries|ADR-0006: границы frontend-рефакторинга без изменения поведения]]
 - [[03_Architecture/ADR-0007-mog-compound-card-in-asset-library|ADR-0007: МОГ как составной объект в существующей библиотеке средств]]
+- [[03_Architecture/ADR-0008-asset-library-api-frontend-boundary|ADR-0008: frontend boundary для API библиотеки средств]]
 - [[03_Architecture/Схемы_архитектуры_Fortis_2026-06-13|Схемы архитектуры Fortis 2026-06-13]]
 - [[03_Architecture/Linear_Telegram_notifications_2026-06-13|Linear -> Telegram notifications]]
