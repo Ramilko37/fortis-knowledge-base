@@ -1,7 +1,7 @@
 # Продуктовый план Fortis: GIS MVP
 
 **Дата актуализации:** 2026-06-13  
-**Последнее обновление:** FRT-48 frontend integration — asset library BE API connected 13.06.2026
+**Последнее обновление:** МОГ placement editor — верхний уровень настроек, оснащение и multi-weapon coverage 14.06.2026
 
 ## Scope decision
 
@@ -40,6 +40,8 @@ Fortis — это ГИС-конструктор защиты объекта от
 - покрытие МОГ строится не от абстрактной группы, а от выбранного оружия/оснащения;
 - стоимость МОГ считается как сумма состава, оружия и оснащения;
 - отчёт должен показывать МОГ не как generic asset, а как пост с составом и вооружением.
+
+См. [[03_Architecture/ADR-0009-mog-placement-instance-settings|ADR-0009]]: библиотека хранит шаблон МОГ, а верхний уровень настроек конкретного поста хранится в `PlacedDefenseObject.compoundProfile`.
 
 Для демо на 2026-06-16 МОГ должен быть героем сценария: пользователь выбирает эшелон, размещает МОГ, задаёт минимальный состав/вооружение, видит сектор поражения, стоимость и попадание в отчёт.
 
@@ -322,12 +324,39 @@ Fortis — это ГИС-конструктор защиты объекта от
 
 ## Changelog
 
+### 2026-06-14 — GIS prototype UX polish
+
+Для демо-сценария карты уточнено поведение интерфейса:
+
+- двойной клик по размещённому средству на карте должен плавно приближать карту к этому средству и держать его в фокусе, повторный двойной клик не должен выполнять zoom out;
+- карта должна иметь явные controls `+/-` в правом верхнем углу и блокировать browser page zoom внутри области карты;
+- выбор объекта защиты переносится в компактный dropdown поверх карты;
+- лишние секции `Объект защиты`, `Выбранная карточка` и отдельная кнопка поиска на карте убираются из первого демо-потока;
+- sidebar библиотеки средств должен плавно сворачиваться и открываться, не ломая контекст карты.
+
+### 2026-06-14 — Linear FE closing workflow
+
+В Linear не используется отдельный статус `Blocked`, поэтому FE-блокировки оформляются через relations и workflow comments.
+
+| Тикет | Описание | Статус |
+|---|---|---|
+| [FRT-47](https://linear.app/fortis-project/issue/FRT-47) | FE: обработка version conflict | Todo, blocked by FRT-56 |
+| [FRT-50](https://linear.app/fortis-project/issue/FRT-50) | FE: документы карточек средств через BE API | Todo |
+| [FRT-51](https://linear.app/fortis-project/issue/FRT-51) | FE: cost/budget BE API integration | Todo |
+| [FRT-56](https://linear.app/fortis-project/issue/FRT-56) | BE: full `DefenseProject` update через `projectJson + version` | Todo, assignee Sergey U. |
+| [FRT-19](https://linear.app/fortis-project/issue/FRT-19) | FE: сравнение сохранённых конфигураций | blocked by FRT-37 |
+| [FRT-28](https://linear.app/fortis-project/issue/FRT-28) | FE: расширенный отчёт | blocked by FRT-38 |
+
+Зафиксирован процесс: после закрытия backend parent-задачи связанная FE-задача переводится из `Backlog` в `Todo`, получает комментарий `Workflow update`, а реальные оставшиеся зависимости оформляются через Linear relations.
+
+См. [[04_Process/Linear_FE_closing_workflow_2026-06-14]].
+
 ### 2026-06-13 — Backend: closed FRT-36 (API стоимости и бюджетных ограничений)
 
 | Тикет | Описание | Статус |
 |---|---|---|
 | [FRT-36](https://linear.app/fortis-project/issue/FRT-36) | API стоимости и бюджетных ограничений | Done |
-| [FRT-51](https://linear.app/fortis-project/issue/FRT-51) | FE: Интеграция бэкенд-API стоимости и бюджетных ограничений | Backlog |
+| [FRT-51](https://linear.app/fortis-project/issue/FRT-51) | FE: Интеграция бэкенд-API стоимости и бюджетных ограничений | Todo |
 
 **Что это даёт продукту:**
 - 4 новых API-эндпоинта для расчёта стоимости конфигурации и управления бюджетом.
@@ -342,7 +371,7 @@ Fortis — это ГИС-конструктор защиты объекта от
 | Тикет | Описание | Статус |
 |---|---|---|
 | [FRT-35](https://linear.app/fortis-project/issue/FRT-35) | Хранение документов карточек средств защиты | Done |
-| [FRT-50](https://linear.app/fortis-project/issue/FRT-50) | FE: Интеграция документов карточек с BE API | Backlog |
+| [FRT-50](https://linear.app/fortis-project/issue/FRT-50) | FE: Интеграция документов карточек с BE API | Todo |
 
 **Что это даёт продукту:**
 - Backend предоставляет CRUD-эндпоинты для документов, прикреплённых к карточкам средств защиты (`/api/v1/assets/documents/*`).
