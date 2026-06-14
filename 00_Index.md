@@ -38,3 +38,4 @@
 ## Процесс
 
 - [[04_Process/Linear_FE_closing_workflow_2026-06-14|Linear FE closing workflow]]
+- [[04_Process/Frontend_develop_branch_policy_2026-06-14|Frontend develop branch policy]]
