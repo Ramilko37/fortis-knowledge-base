@@ -34,3 +34,7 @@
 - [[03_Architecture/ADR-0008-asset-library-api-frontend-boundary|ADR-0008: frontend boundary для API библиотеки средств]]
 - [[03_Architecture/Схемы_архитектуры_Fortis_2026-06-13|Схемы архитектуры Fortis 2026-06-13]]
 - [[03_Architecture/Linear_Telegram_notifications_2026-06-13|Linear -> Telegram notifications]]
+
+## Процесс
+
+- [[04_Process/Linear_FE_closing_workflow_2026-06-14|Linear FE closing workflow]]
