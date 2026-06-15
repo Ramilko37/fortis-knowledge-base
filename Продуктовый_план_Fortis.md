@@ -1,7 +1,7 @@
 # Продуктовый план Fortis: GIS MVP
 
 **Дата актуализации:** 2026-06-15  
-**Последнее обновление:** Backend optimistic locking: update полного DefenseProject через projectJson + version (FRT-56) 15.06.2026
+**Последнее обновление:** Frontend backend-backed GIS flow: HttpOnly auth cookie, proxy guard, current DefenseProject version context (FRT-70/FRT-71/FRT-72/FRT-131) 15.06.2026
 
 ## Scope decision
 

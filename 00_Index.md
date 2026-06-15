@@ -34,6 +34,7 @@
 - [[03_Architecture/ADR-0007-mog-compound-card-in-asset-library|ADR-0007: МОГ как составной объект в существующей библиотеке средств]]
 - [[03_Architecture/ADR-0008-asset-library-api-frontend-boundary|ADR-0008: frontend boundary для API библиотеки средств]]
 - [[03_Architecture/ADR-0009-mog-placement-instance-settings|ADR-0009: настройки МОГ живут в размещённом инстансе]]
+- [[03_Architecture/ADR-0010-frontend-backend-auth-project-boundary|ADR-0010: frontend boundary для backend-backed GIS flow]]
 - [[03_Architecture/Схемы_архитектуры_Fortis_2026-06-13|Схемы архитектуры Fortis 2026-06-13]]
 - [[03_Architecture/Linear_Telegram_notifications_2026-06-13|Linear -> Telegram notifications]]
 
