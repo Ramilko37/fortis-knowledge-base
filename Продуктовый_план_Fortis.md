@@ -1,7 +1,7 @@
 # Продуктовый план Fortis: GIS MVP
 
 **Дата актуализации:** 2026-06-15  
-**Последнее обновление:** API сравнения конфигураций (FRT-37) 15.06.2026
+**Последнее обновление:** API отчёта GIS MVP (FRT-38) 15.06.2026
 
 ## Scope decision
 
@@ -216,7 +216,7 @@ Fortis — это ГИС-конструктор защиты объекта от
 
 ### Отчёт
 
-- [ ] Выгрузка отчёта по текущей конфигурации:
+- [x] Выгрузка отчёта по текущей конфигурации (backend: FRT-38 — 15.06.2026):
   - карта с расположением установок;
   - перечень установок по типу;
   - перечень установок по эшелону;
@@ -325,6 +325,21 @@ Fortis — это ГИС-конструктор защиты объекта от
 ---
 
 ## Changelog
+
+### 2026-06-15 — Backend: closed FRT-38 (API данных для отчёта GIS MVP)
+
+| Тикет | Описание | Статус |
+|---|---|---|
+| [FRT-38](https://linear.app/fortis-project/issue/FRT-38) | API данных для отчёта GIS MVP | Done |
+| [FRT-28](https://linear.app/fortis-project/issue/FRT-28) | FE: расширенный отчёт | Todo (unblocked by FRT-38) |
+
+**Что это даёт продукту:**
+- Новый endpoint `GET /api/v1/projects/report?id={id}&hideCost={bool}` — единый payload для отчёта GIS MVP.
+- Ответ содержит: карту/объекты/слои/типы/стоимость/ТТХ/структурный профиль.
+- Режим скрытия стоимости (hideCost).
+- МОГ-строки (compositionSummary, weaponSummary, azimuthSectorSummary).
+- 12 unit-тестов, 2052 строки кода.
+- PR [#13](https://github.com/we-are-komanda/fortis-back/pull/13) вмержен в develop.
 
 ### 2026-06-15 — Backend: closed FRT-37 (API сравнения конфигураций)
 
