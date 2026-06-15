@@ -1,7 +1,7 @@
 # Продуктовый план Fortis: GIS MVP
 
 **Дата актуализации:** 2026-06-15  
-**Последнее обновление:** Frontend backend-backed GIS flow: HttpOnly auth cookie, proxy guard, current DefenseProject version context (FRT-70/FRT-71/FRT-72/FRT-131) 15.06.2026
+**Последнее обновление:** временно отключён auth redirect guard по умолчанию, пока backend auth не поднят в окружениях 15.06.2026
 
 ## Scope decision
 
@@ -325,6 +325,23 @@ Fortis — это ГИС-конструктор защиты объекта от
 ---
 
 ## Changelog
+
+### 2026-06-15 — Frontend: FRT-89 3D placeholder для демо
+
+До полноценного P3-модуля вкладка `3D` в `/prototype` открывает отдельный state `/prototype?view=3d` с product placeholder:
+
+- пользователь видит 3D-визуал и текст `Раздел в разработке`;
+- основной рабочий контур остаётся 2D GIS-конструктором;
+- legacy route `/models` не возвращается;
+- текущая 2D-карта и `/calculator` не меняют модель данных и продолжают работать от `DefenseProject`.
+
+### 2026-06-15 — Frontend: auth guard временно opt-in
+
+Пока backend auth не поднят в окружениях, frontend не должен блокировать демо-экраны редиректом на login:
+
+- `src/proxy.ts` включает redirect guard только при `FORTIS_AUTH_ENABLED=true`;
+- без этого env `/prototype`, `/calculator` и `/workspace` открываются напрямую;
+- same-origin auth routes и HttpOnly cookie flow остаются в коде для будущего включения backend-backed контура.
 
 ### 2026-06-15 — Backend: closed FRT-56 (update полного DefenseProject через projectJson + version)
 

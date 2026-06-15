@@ -12,6 +12,7 @@
 - Browser-клиент ходит в auth через same-origin routes `/api/auth/login`, `/api/auth/register`, `/api/auth/logout`, `/api/auth/me`.
 - JWT хранится только в HttpOnly cookie `access-token`; frontend не кладёт токен в `localStorage`.
 - Защита `/prototype`, `/calculator` и `/workspace` выполняется через Next `src/proxy.ts`, с редиректом на `/login?next=...` до рендера protected UI.
+- Временное демо-уточнение от 2026-06-15: пока backend auth не поднят в окружениях, `src/proxy.ts` включает redirect guard только при `FORTIS_AUTH_ENABLED=true`. По умолчанию `/prototype`, `/calculator` и `/workspace` остаются открытыми, чтобы не блокировать frontend demo.
 - Server-side frontend routes, которые проксируют Go backend, обязаны пробрасывать `access-token` как `Authorization: Bearer ...` и сохранять исходный `Cookie`.
 - `DefenseProject.version` является optional: локальные черновики могут существовать без версии, backend-проекты должны сохранять версию из ответа и отправлять её при update.
 - Единый current project context для `/prototype` и `/calculator` живёт в `useDefenseProjectStore`: `projectId`, `enterpriseId`, `projectName`, `version?`, полный `DefenseProject`.
