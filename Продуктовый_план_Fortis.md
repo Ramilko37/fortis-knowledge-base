@@ -1,7 +1,7 @@
 # Продуктовый план Fortis: GIS MVP
 
 **Дата актуализации:** 2026-06-15  
-**Последнее обновление:** API отчёта GIS MVP (FRT-38) 15.06.2026
+**Последнее обновление:** Backend-контур авторизованной зоны (FRT-69) 15.06.2026
 
 ## Scope decision
 
@@ -325,6 +325,26 @@ Fortis — это ГИС-конструктор защиты объекта от
 ---
 
 ## Changelog
+
+### 2026-06-15 — Backend: closed FRT-69 (backend-контур авторизованной зоны)
+
+| Тикет | Описание | Статус |
+|---|---|---|
+| [FRT-69](https://linear.app/fortis-project/issue/FRT-69) | Backend-контур авторизованной зоны: пользователи, доступ к предприятиям и сохранение конфигураций | Done |
+| [FRT-70](https://linear.app/fortis-project/issue/FRT-70) | FE: Auth guard и redirect для /prototype и /calculator | Todo (unblocked by FRT-69) |
+| [FRT-71](https://linear.app/fortis-project/issue/FRT-71) | FE: Авторизованная рабочая зона проектов | Todo (unblocked by FRT-69) |
+| [FRT-72](https://linear.app/fortis-project/issue/FRT-72) | FE: Current DefenseProject context между /prototype и /calculator | Todo (unblocked by FRT-69) |
+
+**Что это даёт продукту:**
+- Полный DDD-цикл модуля User (Domain → Infrastructure → Application → UI).
+- JWT-аутентификация (register, login, me, token_validate).
+- AuthRequired middleware с whitelist для публичных эндпоинтов.
+- User-Enterprise связь: таблица user_enterprises, проверка доступа к предприятию.
+- Фильтрация предприятий по пользователю: GET /api/v1/enterprises возвращает только доступные.
+- Миграции 000009_users и 000010_user_enterprises.
+- 32 unit-теста (все проходят с -race).
+- PR [#14](https://github.com/we-are-komanda/fortis-back/pull/14) вмержен в develop.
+- Frontend-тикеты FRT-70, FRT-71, FRT-72 разблокированы.
 
 ### 2026-06-15 — Backend: closed FRT-38 (API данных для отчёта GIS MVP)
 
