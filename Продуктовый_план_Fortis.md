@@ -1,7 +1,7 @@
 # Продуктовый план Fortis: GIS MVP
 
 **Дата актуализации:** 2026-06-15  
-**Последнее обновление:** Backend-контур авторизованной зоны (FRT-69) 15.06.2026
+**Последнее обновление:** Backend optimistic locking: update полного DefenseProject через projectJson + version (FRT-56) 15.06.2026
 
 ## Scope decision
 
@@ -326,6 +326,22 @@ Fortis — это ГИС-конструктор защиты объекта от
 
 ## Changelog
 
+### 2026-06-15 — Backend: closed FRT-56 (update полного DefenseProject через projectJson + version)
+
+| Тикет | Описание | Статус |
+|---|---|---|
+| [FRT-56](https://linear.app/fortis-project/issue/FRT-56) | BE: full `DefenseProject` update через `projectJson + version` | Done |
+| [FRT-131](https://linear.app/fortis-project/issue/FRT-131) | FE: передавать version в теле PUT /api/v1/projects/update | Backlog |
+
+**Что это даёт продукту:**
+- `PUT /api/v1/projects/update` теперь поддерживает опциональное поле `version` для раннего обнаружения конфликта версий (optimistic locking).
+- При несовпадении `version` backend возвращает `409 Conflict`.
+- Если client не передаёт `version` — поведение не меняется (backward compatible).
+- Поле `projectJson` позволяет frontend сохранять полный `DefenseProject` (layers, placedObjects, assetLibrary) одной операцией.
+- 5 новых unit-тестов (application + controller), все проходят.
+- PR [#15](https://github.com/we-are-komanda/fortis-back/pull/15) вмержен в develop.
+- Frontend-тикет FRT-131 создан.
+
 ### 2026-06-15 — Backend: closed FRT-69 (backend-контур авторизованной зоны)
 
 | Тикет | Описание | Статус |
@@ -394,7 +410,7 @@ Fortis — это ГИС-конструктор защиты объекта от
 | [FRT-47](https://linear.app/fortis-project/issue/FRT-47) | FE: обработка version conflict | Todo, blocked by FRT-56 |
 | [FRT-50](https://linear.app/fortis-project/issue/FRT-50) | FE: документы карточек средств через BE API | Todo |
 | [FRT-51](https://linear.app/fortis-project/issue/FRT-51) | FE: cost/budget BE API integration | Todo |
-| [FRT-56](https://linear.app/fortis-project/issue/FRT-56) | BE: full `DefenseProject` update через `projectJson + version` | Todo, assignee Sergey U. |
+| [FRT-56](https://linear.app/fortis-project/issue/FRT-56) | BE: full `DefenseProject` update через `projectJson + version` | Done |
 | [FRT-19](https://linear.app/fortis-project/issue/FRT-19) | FE: сравнение сохранённых конфигураций | blocked by FRT-37 |
 | [FRT-28](https://linear.app/fortis-project/issue/FRT-28) | FE: расширенный отчёт | blocked by FRT-38 |
 
