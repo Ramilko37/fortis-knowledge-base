@@ -1,7 +1,7 @@
 # Продуктовый план Fortis: GIS MVP
 
 **Дата актуализации:** 2026-06-16  
-**Последнее обновление:** восстановлен отдельный вход в 3D-сцену как прототип Модуля сценарного моделирования, не входящий в критический путь GIS MVP.
+**Последнее обновление:** 2026-06-17 — добавлен frontend-only прототип модуля ретроспективного анализа по WIP-роуту `/retrospective-analysis`, без backend-контракта и без влияния на GIS MVP critical path.
 
 ## Scope decision
 
@@ -15,6 +15,11 @@ MVP Fortis по входящему ТЗ заказчика — это:
 - модуль сценарного моделирования.
 
 Эти направления не удаляются из долгосрочного видения, но не входят в ближайший roadmap и не должны влиять на P0/P1-приоритеты ГИС-модуля.
+
+На 2026-06-17 добавлен клиентский WIP-модуль **`/retrospective-analysis`** в рамках `defense-studio`:
+- демонстрационный расчёт цепочки «обнаружили → воздействовали → упало» для статических профилей БПЛА;
+- derived-маркеры трассировки, оценка времени и простая plausibility-проверка по радиусу профиля;
+- прототип остается вне критического пути GIS MVP и не связан с backend.
 
 На 2026-06-16 старая 3D-сцена возвращена как отдельный вход **«Прототип Модуля сценарного моделирования»**. Это демонстрационный/исследовательский прототип будущего сценарного направления, а не основной рабочий контур GIS MVP и не источник расчётной конфигурации.
 
@@ -437,6 +442,20 @@ Fortis — это ГИС-конструктор защиты объекта от
 - scale bar считается от текущего zoom/latitude и не должен показывать hardcoded `1000 км`;
 - touchpad / wheel zoom на карте должен быть заметно замедлен относительно дефолта Deck.gl (`scrollZoom.speed = 0.00125`), чтобы скролл не пролетал через несколько уровней масштаба;
 - активный эшелон и размещения остаются в `DefenseProject`, без переноса источника правды в `useDefenseStudioStore`.
+
+### 2026-06-17 — Frontend: basemap switching for `/prototype`
+
+Для карты `/prototype` зафиксирована отдельная view-модель базовой подложки:
+
+- basemap не входит в `DefenseProject.layers`, `placedObjects`, калькулятор, budget check или conflict engine;
+- текущий источник карты хранится отдельно в `useMapViewStore` и восстанавливается из `localStorage`;
+- список источников живёт в registry `src/shared/config/base-map-sources.ts`, а URL не хардкодятся внутри UI-компонента карты;
+- MVP-источники: `openfreemap-bright`, `osm-standard`, `topographic`, архитектурная точка расширения `satellite-demo`, а также `internal-basemap` для закрытого контура;
+- добавлены env-флаги `NEXT_PUBLIC_FORTIS_ALLOW_EXTERNAL_BASEMAPS` и `NEXT_PUBLIC_FORTIS_DEFAULT_BASEMAP`;
+- для self-hosted/internal basemap поддерживаются env-настройки `NEXT_PUBLIC_FORTIS_INTERNAL_BASEMAP_STYLE_URL`, `NEXT_PUBLIC_FORTIS_INTERNAL_BASEMAP_TILES`, `NEXT_PUBLIC_FORTIS_INTERNAL_BASEMAP_TYPE`, `NEXT_PUBLIC_FORTIS_INTERNAL_BASEMAP_ATTRIBUTION`;
+- для topo/satellite demo поддерживаются конфигурационные env `NEXT_PUBLIC_FORTIS_TOPOGRAPHIC_BASEMAP_TILES`, `NEXT_PUBLIC_FORTIS_TOPOGRAPHIC_BASEMAP_ATTRIBUTION`, `NEXT_PUBLIC_FORTIS_SATELLITE_BASEMAP_TILES`, `NEXT_PUBLIC_FORTIS_SATELLITE_BASEMAP_TYPE`, `NEXT_PUBLIC_FORTIS_SATELLITE_BASEMAP_ATTRIBUTION`;
+- при `NEXT_PUBLIC_FORTIS_ALLOW_EXTERNAL_BASEMAPS=false` UI скрывает внешние источники и оставляет только `allowedInClosedContour=true`, без внешних запросов;
+- при ошибке загрузки выбранного источника карта показывает warning и откатывается на допустимый default basemap без сброса пользовательских overlays и viewport.
 
 ### 2026-06-14 — GIS prototype UX polish
 
