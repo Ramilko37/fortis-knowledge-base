@@ -35,7 +35,11 @@ Defense Studio обновлён по концепту `/Users/rr/Downloads/Forti
 - `showPlacementLabels`
 - `showConstraintWarnings`
 
-Оверлеи: compact toolbar сверху, warning stack справа, dark status footer снизу, basemap/zoom controls справа.
+Оверлеи: compact toolbar сверху, warning stack снизу слева над status footer, dark status footer снизу.
+
+На 2026-06-24 compact toolbar `/prototype` объединяет режимы карты и технические controls в одну поверхность: `Покрытие`, `Подписи`, `Ограничения`, `Линейка`, basemap dropdown `Карта`, zoom `+/-`. Отдельный крупный basemap/zoom cluster не является каноном.
+
+Первый экран `/prototype` должен открываться как живой редактор, а не empty state: при наличии demo/local проекта выбран первый размещённый объект, в дереве и inspector подсвечен `МОГ — пост №1`, на карте видны размещённые маркеры средств защиты и summary warnings. Demo-conflict для `МОГ — пост №2` сохраняется при последующем редактировании объектов, пока полноценный conflict engine не заменит placeholder flags.
 
 ## Документация
 
