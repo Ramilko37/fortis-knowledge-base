@@ -17,13 +17,37 @@ Defense Studio обновлён по концепту `/Users/rr/Downloads/Forti
 
 ## Токены
 
+- Brand/display: Syne.
 - UI: Manrope.
 - Числа/коды: IBM Plex Mono.
 - Primary blue: `#2563eb`.
+- Primary hover/accent: `#1d4ed8`, `#38bdf8`.
 - App bar: `#0f172a`.
+- App bar surface: `#1e293b`.
 - Surfaces: `#ffffff`, `#f8fafc`, `#f1f5f9`.
+- Selected surface/border: `#eff6ff`, `#bfdbfe`.
 - Semantic: green `#10b981`, amber `#f59e0b`, red `#ef4444`.
 - Radius: `8px` для панелей/карточек/контролов, `6px` для внутренних fields.
+- Desktop layout constants from source: app bar `54px`, left panel `312px`, inspector `328px`.
+
+Frontend UI kit source of truth: `frontend/docs/product/fortis-studio-styleguide.md`.
+
+## UI kit from `Fortis Studio.html`
+
+На 2026-06-25 bundled HTML размотан в полноценный UI kit-контракт во frontend-документации.
+
+Канонические части:
+
+- тёмный app bar с `FORTIS Studio`, route links `Карта защиты`, `Калькулятор`, `Сценарии BETA`, low-emphasis `Анализ`, disabled undo/redo, save/export;
+- desktop three-pane workspace: left `Эшелоны / Библиотека`, center live GIS map shell, right object inspector;
+- compact echelon tree с кодом слоя, цветом, диапазоном, счётчиком и nested placed objects;
+- library groups: `Обнаружение`, `РЭБ / Подавление`, `Огневое поражение`, `Пассивная защита`;
+- map toolbar: `Покрытие`, `Подписи`, `Ограничения`, `Линейка`, basemap `Карта`, zoom `+/-`;
+- warning stack: budget/info, blind sector warning, conflict danger;
+- inspector fields: координаты, азимут, сектор, дальность, количество, статус, заметки;
+- calculator sibling view with estimate list and sticky summary/budget aside.
+
+Runtime-ограничение: массивы `ECHELONS`, `SEED`, `LIBRARY` из HTML могут быть только demo seed/reference. В рабочем `/prototype` source of truth остаётся `DefenseProject.layers`, `DefenseProject.placedObjects`, `DefenseProject.assetLibrary`.
 
 ## Карта
 
