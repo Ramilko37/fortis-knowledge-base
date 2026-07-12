@@ -80,6 +80,14 @@ Fortis — это ГИС-конструктор защиты объекта от
 
 `useDefenseStudioStore` остаётся для 3D/demo-runtime-слоёв, но **не** используется как основная модель расчётных размещений.
 
+### 2026-07-12 — explicit server-backed investor flow
+
+- Frontend сохраняет полный `DefenseProject` на backend по явному действию, передавая optimistic-lock `version`.
+- Для backend-проектов localStorage содержит только recovery draft и ID активного проекта; reload загружает сохранённое тело проекта с сервера.
+- `409` предоставляет действия загрузки server version и сохранения текущей работы отдельным вариантом.
+- `/calculator` использует server cost, budget и report без silent local fallback; `/workspace` показывает типизированное A/B сравнение; `/report` открывает печатный HTML report.
+- Deployment/staging и demo seed остаются отдельным следующим этапом.
+
 ## P0 — закрыть сквозной 2D GIS-конструктор
 
 Цель: пользователь должен собрать базовую конфигурацию защиты на карте и увидеть её в расчёте.

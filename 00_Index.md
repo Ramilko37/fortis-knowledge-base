@@ -37,6 +37,7 @@
 - [[03_Architecture/ADR-0009-mog-placement-instance-settings|ADR-0009: настройки МОГ живут в размещённом инстансе]]
 - [[03_Architecture/ADR-0010-frontend-backend-auth-project-boundary|ADR-0010: frontend boundary для backend-backed GIS flow]]
 - [[03_Architecture/ADR-0011-polygon-echelon-geometry|ADR-0011: произвольная polygon-геометрия эшелонов]]
+- [[03_Architecture/ADR-0012-explicit-server-save-and-recovery|ADR-0012: явное серверное сохранение и recovery проекта]]
 - [[03_Architecture/Схемы_архитектуры_Fortis_2026-06-13|Схемы архитектуры Fortis 2026-06-13]]
 - [[03_Architecture/Linear_Telegram_notifications_2026-06-13|Linear -> Telegram notifications]]
 
