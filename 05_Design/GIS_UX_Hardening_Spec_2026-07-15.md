@@ -301,12 +301,12 @@
 
 | Раздел | Статус | Реализованное поведение | Проверка |
 |---|---|---|---|
-| 4.1 Безопасное удаление | Verified | confirmation с именем и последствиями, cancel/Escape, exact undo 10 секунд, retry без потери контекста | store contract + Playwright confirm/cancel и keyboard regression |
-| 4.2 Скрытый активный эшелон | Verified | selection не меняется, `Активный · Скрыт`, явное восстановление видимости, placement guard; hidden fill/markers/coverage не рисуются | store/source contracts + Playwright hidden-active |
-| 4.3 Картография и легенда | Verified | спокойные opacity/border tokens, dynamic keyboard-accessible legend, кириллица, локализованный basemap с атрибуцией без transport/dev copy | config/source contracts + visual captures на `1280×720` и `1440×960` |
-| 4.4 GIS-инструменты | Verified | home/reset extent, polyline measurement, Enter/double-click/Escape/clear, compass reset, targets `44×44` | measurement unit test + Playwright controls/keyboard |
+| 4.1 Безопасное удаление | Verified | confirmation с именем и последствиями, cancel/Escape, exact undo 10 секунд, retry без потери контекста | exact store snapshot + Playwright confirm → cancel → delete → undo |
+| 4.2 Скрытый активный эшелон | Verified | selection не меняется, `Активный · Скрыт`, явное восстановление видимости, placement guard; hidden fill/markers/coverage не рисуются | store/source contracts + Playwright hidden-active после reload |
+| 4.3 Картография и легенда | Verified | спокойные opacity/border tokens, dynamic keyboard-accessible legend, категории только фактически присутствующих маркеров, кириллица, локализованный basemap с атрибуцией без transport/dev copy | unit-контракт категорий + Playwright `МОГ → Поражение → скрыть L5 → категория исчезла`, console glyph assertion и durable captures на `1280×720` и `1440×960` |
+| 4.4 GIS-инструменты | Verified | home/reset extent, polyline measurement, Enter/double-click/Escape/clear, compass reset, targets `44×44` | unit geometry + Playwright zoom→reset, segments→Enter→clear и point→Escape; project JSON неизменен |
 | 4.5 Поиск | Verified | нормализация и token ranking, `МОГ` не совпадает с `Дымогенерация` как substring, compatible-first/all, три комбинируемых facet, result count/reset | catalog-search unit test + Playwright keyboard search |
-| 4.6 Accessibility | Verified | `aria-current`, live regions, toggle semantics, accessible icon actions, modal/drawer focus, 200% zoom без page overflow | keyboard-only L5→МОГ flow, axe WCAG smoke без serious/critical, two desktop viewports |
+| 4.6 Accessibility | Verified | `aria-current`, named map/catalog/layer-manager regions, live regions, toggle semantics, accessible icon actions, modal/drawer focus, 200% zoom без page overflow | screen-reader landmark assertions, keyboard-only L5→МОГ flow, axe WCAG smoke без serious/critical, two desktop viewports |
 | 4.7 Сохранение | Verified | `saving/saved/offline-draft/conflict/error`, локализованный recovery, exact retry intent, input очищается только после success, technical details отделены | state/store contracts + mocked HTTP 500→retry Playwright + real local backend smoke |
 
 ### Интеграционное решение по сохранению
@@ -318,13 +318,27 @@
 - save/load не превращают локальный object id в enterprise context;
 - opt-in тест `test/playwright/local-backend-smoke.spec.ts` выполняет register-or-login, сохраняет карту через frontend BFF в Go API/PostgreSQL, проверяет UI-статус и удаляет smoke-проект.
 
+### Visual evidence
+
+`1280×720`, основное состояние:
+
+![[assets/gis-ux-hardening-2026-07-17/prototype-1280x720.png]]
+
+`1440×960`, основное состояние:
+
+![[assets/gis-ux-hardening-2026-07-17/prototype-1440x960.png]]
+
+`1280×720`, раскрытая легенда с категорией реально размещённого маркера:
+
+![[assets/gis-ux-hardening-2026-07-17/prototype-1280x720-legend.png]]
+
 ### Финальный verification gate
 
 - все `src/**/*test.ts` и source-contract `.mjs` — PASS;
 - scoped ESLint всех изменённых TS/TSX/MJS — PASS;
 - `pnpm exec tsc --noEmit` — PASS;
 - `pnpm build` — PASS, 27 маршрутов;
-- `pnpm exec playwright test test/playwright/prototype.spec.ts --reporter=line` — 10/10 PASS;
+- `pnpm exec playwright test test/playwright/prototype.spec.ts --reporter=line` — 12/12 PASS;
 - `RUN_LOCAL_BACKEND_SMOKE=1 pnpm exec playwright test test/playwright/local-backend-smoke.spec.ts --reporter=line` — 1/1 PASS;
 - `git diff --check` — PASS.
 

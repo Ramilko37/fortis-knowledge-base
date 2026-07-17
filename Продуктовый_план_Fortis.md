@@ -2,7 +2,7 @@
 
 **Дата актуализации:** 2026-07-17
 
-**Последнее обновление:** 2026-07-17 — [[05_Design/GIS_UX_Hardening_Spec_2026-07-15|GIS UX Hardening]] реализован и проверен: safe delete/undo, hidden-active selection, спокойная картография и легенда, reset/measurement, ranked search/facets, desktop accessibility и save recovery. Основной браузерный набор прошёл 10/10, реальный save-path — локально через frontend BFF → Go API → PostgreSQL. Исправлен контракт `enterpriseId`: локальный object id больше не отправляется как backend UUID.
+**Последнее обновление:** 2026-07-17 — [[05_Design/GIS_UX_Hardening_Spec_2026-07-15|GIS UX Hardening]] реализован и проверен: safe delete/undo, hidden-active selection, спокойная картография и динамическая легенда, reset/measurement, ranked search/facets, desktop accessibility и save recovery. Основной браузерный набор прошёл 12/12, включая reload, browser undo, полный measurement flow и обновление категорий легенды при скрытии эшелона; реальный save-path проверен локально через frontend BFF → Go API → PostgreSQL. Исправлен контракт `enterpriseId`: локальный object id больше не отправляется как backend UUID.
 
 ## Scope decision
 
