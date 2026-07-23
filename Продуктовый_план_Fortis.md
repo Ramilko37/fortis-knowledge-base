@@ -1,8 +1,8 @@
 # Продуктовый план Fortis: GIS MVP
 
-**Дата актуализации:** 2026-07-17
+**Дата актуализации:** 2026-07-23
 
-**Последнее обновление:** 2026-07-17 — [[05_Design/GIS_UX_Hardening_Spec_2026-07-15|GIS UX Hardening]] реализован и проверен: safe delete/undo, hidden-active selection, спокойная картография и динамическая легенда, reset/measurement, ranked search/facets, desktop accessibility и save recovery. Основной браузерный набор прошёл 12/12, включая reload, browser undo, полный measurement flow и обновление категорий легенды при скрытии эшелона; реальный save-path проверен локально через frontend BFF → Go API → PostgreSQL. Исправлен контракт `enterpriseId`: локальный object id больше не отправляется как backend UUID.
+**Последнее обновление:** 2026-07-23 — runtime-интерфейс `/prototype` мигрирован на реализованный в Storybook Fortis UI Kit: унифицированы shell, дерево проекта, библиотека, map controls, инспектор и вложенные редакторы; из GIS UI удалены Ant Design и Ant Icons; responsive-контракт проверен на 390, 768, 1024 и 1440 px. Решение и границы специализированных GIS-компонентов зафиксированы в [[03_Architecture/ADR-0013-gis-workspace-fortis-ui-kit-migration|ADR-0013]].
 
 ## Scope decision
 
@@ -57,6 +57,12 @@ Fortis — это ГИС-конструктор защиты объекта от
 Повторная проверка после части remediation подтвердила, что collapsible panels и visibility уже работают, но сохранились семь незакрытых разрывов: безопасное удаление, hidden-active слой, картографическая графика и легенда, home/reset и измерение, search relevance/compatible-first, desktop accessibility и recovery при ошибках сохранения. Продуктовое поведение и границы Linear-задач зафиксированы в [[05_Design/GIS_UX_Hardening_Spec_2026-07-15]].
 
 На 2026-07-17 эти семь разрывов закрыты реализацией в ветке `codex/gis-ux-hardening` и подтверждены unit/contract, keyboard, axe, viewport и local-backend тестами. Новые задачи FRT-133, FRT-134, FRT-135, FRT-136, FRT-137, FRT-138 и FRT-139 закрывают только отсутствовавший scope; существующие FRT-49, FRT-66, FRT-93, FRT-101, FRT-114 и FRT-115 сохраняют свою более широкую ответственность.
+
+## Fortis UI Kit для GIS Workspace
+
+На 2026-07-23 `/prototype` использует общий Fortis UI Kit как канонический runtime-слой: кнопки, поля, поиск, статусы, карточки, дерево, overlay-компоненты и семантические иконки совпадают со Storybook. MapLibre/deck.gl canvas, зоны покрытия, маркеры и азимутальные controls остаются специализированными GIS-компонентами, но наследуют Fortis tokens и actions. Подробный контракт и responsive-режимы описаны в [[03_Architecture/ADR-0013-gis-workspace-fortis-ui-kit-migration|ADR-0013]].
+
+Мобильный режим не становится отдельным продуктовым flow: он сохраняет доступность карты и библиотеки как responsive safeguard. Основной производственный сценарий по-прежнему ориентирован на desktop GIS workspace.
 
 ## МОГ как составной объект и демо-акцент
 
