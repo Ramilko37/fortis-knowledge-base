@@ -15,6 +15,7 @@
 - [[05_Design/GIS_UX_Hardening_Spec_2026-07-15|Спецификация GIS UX Hardening для /prototype — 2026-07-15]]
 - [[03_Architecture/ADR-0012-fortis-design-system-foundations|ADR-0012: Fortis Design System Foundations]]
 - [[03_Architecture/ADR-0013-gis-workspace-fortis-ui-kit-migration|ADR-0013: GIS Workspace на Fortis UI Kit]]
+- [[03_Architecture/ADR-0014-map-first-gis-workspace|ADR-0014: Map-first рабочее пространство GIS]]
 - [[Сводка_треда_2026-06-10|Сводка треда 2026-06-10]]
 - [[ТЗ_Картографическая_модель_защиты|ТЗ: Картографическая модель защиты]]
 - [[Сравнение_ТЗ_картографическая_модель_защиты_2026-06-11|Сравнение ТЗ: картографическая модель защиты]]
@@ -52,6 +53,7 @@
 - [[03_Architecture/ADR-0011-polygon-echelon-geometry|ADR-0011: произвольная polygon-геометрия эшелонов]]
 - [[03_Architecture/ADR-0012-fortis-design-system-foundations|ADR-0012: foundations дизайн-системы Fortis]]
 - [[03_Architecture/ADR-0013-gis-workspace-fortis-ui-kit-migration|ADR-0013: миграция GIS Workspace на Fortis UI Kit]]
+- [[03_Architecture/ADR-0014-map-first-gis-workspace|ADR-0014: map-first GIS Workspace]]
 - [[03_Architecture/Схемы_архитектуры_Fortis_2026-06-13|Схемы архитектуры Fortis 2026-06-13]]
 - [[03_Architecture/Linear_Telegram_notifications_2026-06-13|Linear -> Telegram notifications]]
 
