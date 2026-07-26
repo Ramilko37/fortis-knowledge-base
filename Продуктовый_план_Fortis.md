@@ -2,7 +2,7 @@
 
 **Дата актуализации:** 2026-07-23
 
-**Последнее обновление:** 2026-07-24 — `/prototype` приведён к map-first модели: «Структура» и «Библиотека» взаимоисключающие, контекстный инспектор появляется только при выборе, а постоянный нижний обзор эшелонов и плавающая карточка объектов удалены. Карточки средств открываются в защищённом Fortis Drawer. Решение зафиксировано в [[03_Architecture/ADR-0014-map-first-gis-workspace|ADR-0014]].
+**Последнее обновление:** 2026-07-26 — `/prototype` откатан к прошлому дизайну до Fortis Studio / UI Kit runtime redesign. Fortis UI Kit и foundations дизайн-системы остаются в кодовой базе, но ADR-0013 и ADR-0014 больше не являются актуальным runtime-контрактом страницы `/prototype`. Решение зафиксировано в [[03_Architecture/ADR-0015-rollback-map-first-prototype-redesign|ADR-0015]].
 
 ## Scope decision
 
@@ -58,15 +58,15 @@ Fortis — это ГИС-конструктор защиты объекта от
 
 На 2026-07-17 эти семь разрывов закрыты реализацией в ветке `codex/gis-ux-hardening` и подтверждены unit/contract, keyboard, axe, viewport и local-backend тестами. Новые задачи FRT-133, FRT-134, FRT-135, FRT-136, FRT-137, FRT-138 и FRT-139 закрывают только отсутствовавший scope; существующие FRT-49, FRT-66, FRT-93, FRT-101, FRT-114 и FRT-115 сохраняют свою более широкую ответственность.
 
-## Fortis UI Kit для GIS Workspace
+## Fortis UI Kit и статус `/prototype`
 
-На 2026-07-23 `/prototype` использует общий Fortis UI Kit как канонический runtime-слой: кнопки, поля, поиск, статусы, карточки, дерево, overlay-компоненты и семантические иконки совпадают со Storybook. MapLibre/deck.gl canvas, зоны покрытия, маркеры и азимутальные controls остаются специализированными GIS-компонентами, но наследуют Fortis tokens и actions. Подробный контракт и responsive-режимы описаны в [[03_Architecture/ADR-0013-gis-workspace-fortis-ui-kit-migration|ADR-0013]].
+На 2026-07-26 `/prototype` больше не использует Fortis UI Kit как канонический runtime-слой. Общий Fortis UI Kit, tokens и Storybook сохраняются в `frontend/src/shared/ui/fortis/`, но страница `/prototype` возвращена к прошлому дизайну до Fortis Studio / UI Kit runtime redesign. ADR-0013 сохранён в истории как superseded; актуальный контракт описан в [[03_Architecture/ADR-0015-rollback-map-first-prototype-redesign|ADR-0015]].
 
-Мобильный режим не становится отдельным продуктовым flow: он сохраняет доступность карты и библиотеки как responsive safeguard. Основной производственный сценарий по-прежнему ориентирован на desktop GIS workspace.
+Мобильный режим не становится отдельным продуктовым flow: основной производственный сценарий по-прежнему ориентирован на desktop GIS workspace.
 
-## Map-first GIS Workspace
+## Откат `/prototype` к прошлому дизайну
 
-На 2026-07-24 главный экран `/prototype` перестроен так, чтобы карта занимала основной полезный объём desktop. Структура проекта и библиотека не конкурируют в одной левой панели; инспектор не имеет пустого постоянного состояния; legacy bottom drawer и отдельная карта объектов удалены. Карточка средства использует Fortis Drawer с inline validation, focus-management и подтверждением отмены несохранённых изменений. Контракт состояния и verification описаны в [[03_Architecture/ADR-0014-map-first-gis-workspace|ADR-0014]].
+На 2026-07-26 откат только map-first слоя признан недостаточным. `/prototype` возвращён к прошлому runtime-дизайну из frontend commit `63cb6fb` (`revert: restore frontend before Fortis Studio redesign`). ADR-0014 сохранён как superseded, актуальное решение описано в [[03_Architecture/ADR-0015-rollback-map-first-prototype-redesign|ADR-0015]].
 
 ## МОГ как составной объект и демо-акцент
 

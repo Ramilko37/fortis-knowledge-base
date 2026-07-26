@@ -1,7 +1,7 @@
 # ADR-0013: GIS Workspace на Fortis UI Kit
 
 - **Date:** 2026-07-23
-- **Status:** accepted
+- **Status:** superseded by [[03_Architecture/ADR-0015-rollback-map-first-prototype-redesign|ADR-0015]]
 
 ## Context
 

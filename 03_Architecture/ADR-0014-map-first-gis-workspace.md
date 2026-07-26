@@ -1,7 +1,7 @@
 # ADR-0014: Map-first рабочее пространство GIS
 
 - **Date:** 2026-07-24
-- **Status:** accepted
+- **Status:** superseded by [[03_Architecture/ADR-0015-rollback-map-first-prototype-redesign|ADR-0015]]
 
 ## Context
 
