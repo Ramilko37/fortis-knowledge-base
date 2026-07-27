@@ -18,9 +18,14 @@
 - Единый current project context для `/prototype` и `/calculator` живёт в `useDefenseProjectStore`: `projectId`, `enterpriseId`, `projectName`, `version?`, полный `DefenseProject`.
 - При `409 Conflict` frontend показывает видимое состояние конфликта и действие перезагрузки актуальной версии, без silent overwrite.
 - Budget/cost/report/compare/documents подключаются через typed API helpers к backend routes `/api/v1/projects/*` и `/api/v1/assets/documents/*`.
+- На 2026-07-27 demo routes `/api/defense/catalog` и `/api/defense/facilities` больше не являются чистыми моками: сначала они пробуют backend `/api/v1/assets` и `/api/v1/enterprises` через server-side proxy, адаптируют ответ в legacy demo-типы и fallback'ятся на mock-data при `401`, `404` или пустом backend-каталоге.
+- `backend-proxy.ts` должен принимать и `BACKEND_URL`, и deploy-переменную `FORTIS_API_BASE_URL`; обе нормализуются до `/api/v1`.
+- `/prototype` показывает backend documents metadata для карточек средств защиты через `assets/documents/list`, `assets/documents`, `assets/documents/delete` и download URL.
+- `/calculator` для сохранённых backend-проектов загружает backend budget config, даёт сохранить бюджетный лимит на backend и может выполнить явную backend-проверку кандидата через `/api/v1/projects/budget/check`, если frontend asset/layer можно сопоставить с backend id.
 
 ## Следствия
 
 - `/workspace` становится авторизованной точкой входа GIS-flow: предприятие -> конфигурация -> `/prototype` -> `/calculator`.
 - Local fallback остаётся допустимым только для unsaved drafts и offline/empty catalog states.
 - Любые будущие frontend save/load/report/compare изменения должны уважать backend optimistic locking и current project context.
+- Demo-only routes `/api/defense/layers`, `/api/defense/evaluate` и `/api/defense/recommend` остаются на mock-репозитории до появления соответствующих backend endpoints.
