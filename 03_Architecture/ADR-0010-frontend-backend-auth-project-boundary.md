@@ -15,6 +15,8 @@
 - Временное демо-уточнение от 2026-06-15: пока backend auth не поднят в окружениях, `src/proxy.ts` включает redirect guard только при `FORTIS_AUTH_ENABLED=true`. По умолчанию `/prototype`, `/calculator` и `/workspace` остаются открытыми, чтобы не блокировать frontend demo.
 - Server-side frontend routes, которые проксируют Go backend, обязаны пробрасывать `access-token` как `Authorization: Bearer ...` и сохранять исходный `Cookie`.
 - `DefenseProject.version` является optional: локальные черновики могут существовать без версии, backend-проекты должны сохранять версию из ответа и отправлять её при update.
+- С 2026-07-28 frontend отправляет `enterpriseId` в save/update только если значение является backend UUID. Локальные demo id вроде `obj-1`/`facility-alpha` остаются внутри `DefenseProject.baseObject.id`, но не попадают в UUID-колонку `defense_projects.enterprise_id`.
+- Backend update сохраняет пустой `enterpriseId` как `NULL`, возвращает следующую optimistic-lock `version` после успешного update, а export проекта включает `version`, чтобы загруженный проект можно было сохранить повторно без ложного конфликта.
 - Единый current project context для `/prototype` и `/calculator` живёт в `useDefenseProjectStore`: `projectId`, `enterpriseId`, `projectName`, `version?`, полный `DefenseProject`.
 - При `409 Conflict` frontend показывает видимое состояние конфликта и действие перезагрузки актуальной версии, без silent overwrite.
 - Budget/cost/report/compare/documents подключаются через typed API helpers к backend routes `/api/v1/projects/*` и `/api/v1/assets/documents/*`.
