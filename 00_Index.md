@@ -29,6 +29,7 @@
 - [[01_Requirements/Спецификация_03_Сквозной_GIS_бюджет_и_отчёт|03 — Сквозной GIS, бюджет и отчёт]]
 - [[01_Requirements/Спецификация_04_Ретроспективный_анализ_атак|04 — Ретроспективный анализ атак]]
 - [[01_Requirements/Спецификация_05_Угрозы_сценарии_3D_и_совместная_работа|05 — Угрозы, сценарии, 3D и совместная работа]]
+- [[01_Requirements/Fortis_Sibur_Product_UX_Notes_2026-07-26|Fortis / Сибур: продуктовые и UX-заметки 2026-07-26]]
 - Продукт
 - Предметная область
 - Архитектура
@@ -63,3 +64,4 @@
 
 - [[04_Process/Linear_FE_closing_workflow_2026-06-14|Linear FE closing workflow]]
 - [[04_Process/Frontend_develop_branch_policy_2026-06-14|Frontend develop branch policy]]
+- [[04_Process/Dev_VM_Deploy_2026-07-27|Dev VM deploy 2026-07-27]]

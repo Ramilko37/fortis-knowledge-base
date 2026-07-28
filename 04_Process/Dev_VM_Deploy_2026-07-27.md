@@ -8,6 +8,7 @@
 - Internal IP: `10.0.0.5`
 - SSH user: `user1`
 - OS: Ubuntu 24.04
+- Local SSH alias on the operator machine: `fortis-dev-vm`
 
 ## Решение
 
@@ -27,6 +28,33 @@ Deploy-файлы живут в parent repo: `deploy/production/`.
 
 - `POSTGRES_PASSWORD`
 - `APP_AUTH_JWTSECRET`
+
+Для уведомлений о новых сборках на сервере используется Cloudflare Worker
+`fortis-build-telegram`, потому что dev VM находится в РФ и не может стабильно
+ходить напрямую в `api.telegram.org`. Worker отправляет сообщения в Telegram
+bot `@fortis_ci_cd_bot`.
+
+Секретный Telegram token хранится только в Cloudflare Worker secrets. На VM
+хранится только `DEPLOY_NOTIFY_WEBHOOK_URL` с path-secret:
+
+- `~/fortis/deploy/production/.env`
+- `DEPLOY_NOTIFY_WEBHOOK_URL=https://fortis-build-telegram.galyamdin.workers.dev/deploy/<secret>`
+
+Публичные параметры Telegram-топика в Worker:
+
+- `TELEGRAM_CHAT_ID=-1004435908726`
+- `TELEGRAM_THREAD_ID=370`
+
+Запуск deploy с уведомлениями:
+
+```bash
+cd ~/fortis/deploy/production
+./deploy-with-notify.sh
+```
+
+Скрипт отправляет события `started`, `succeeded` и `failed`. Успешная сборка
+фиксируется только после `docker compose up -d --build` и healthcheck backend и
+frontend внутри Compose-сети.
 
 ## Ограничения
 
