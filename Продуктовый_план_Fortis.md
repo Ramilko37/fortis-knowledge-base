@@ -64,6 +64,8 @@ Fortis — это ГИС-конструктор защиты объекта от
 
 Мобильный режим не становится отдельным продуктовым flow: основной производственный сценарий по-прежнему ориентирован на desktop GIS workspace.
 
+На 2026-07-28 документы карточек средств остаются backend/API scope, но не показываются в текущем демо `/prototype`: панель документов в библиотеке средств скрыта, чтобы не перегружать демо незавершённой серверной функцией.
+
 ## Откат `/prototype` к прошлому дизайну
 
 На 2026-07-26 откат только map-first слоя признан недостаточным. `/prototype` возвращён к прошлому runtime-дизайну из frontend commit `63cb6fb` (`revert: restore frontend before Fortis Studio redesign`). ADR-0014 сохранён как superseded, актуальное решение описано в [[03_Architecture/ADR-0015-rollback-map-first-prototype-redesign|ADR-0015]].
@@ -568,7 +570,7 @@ Fortis — это ГИС-конструктор защиты объекта от
 - Backend предоставляет CRUD-эндпоинты для библиотеки средств защиты (`/api/v1/assets`).
 - Разделение общего каталога (`is_public=true`) и пользовательских карточек (`enterprise_id`).
 - JSONB-хранение для гибкой схемы, совместимой с `DefenseProject.assetLibrary`.
-- Frontend `/prototype` загружает библиотеку через same-origin `/api/v1/assets`, а Next proxy направляет запросы на backend `FORTIS_API_BASE_URL` без `trailingSlash`-редиректа.
+- Frontend `/prototype` загружает библиотеку через same-origin `/api/v1/assets`, а Next proxy направляет запросы на dev VM proxy по умолчанию или на backend `FORTIS_API_BASE_URL` без `trailingSlash`-редиректа.
 - UI управления библиотекой поддерживает создание, редактирование, удаление и fallback на локальную библиотеку при недоступном backend.
 - Контракт единиц измерения зафиксирован: backend DTO хранит дальности в километрах, frontend `DefenseProject.assetLibrary` — в метрах.
 - 22 unit-теста, lint/build — пройдены.

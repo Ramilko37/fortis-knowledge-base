@@ -23,8 +23,10 @@ Frontend оставляет browser-facing URL same-origin (`/api/v1/assets...`)
 Переменная backend base URL:
 
 - `FORTIS_API_BASE_URL`
-- fallback для локального режима: `http://localhost:8090`
+- default для локального frontend dev: `http://85.208.87.187` (dev VM frontend proxy, публичный `/api/v1/*`)
 - `NEXT_PUBLIC_FORTIS_API_BASE_URL` допускается как compatibility fallback, но секретов в ней быть не должно.
+
+Docker/deploy окружения должны задавать `FORTIS_API_BASE_URL` явно. На dev VM frontend container использует внутренний backend `http://backend:8090`, а не публичный IP.
 
 Для asset routes включён `skipTrailingSlashRedirect: true`, чтобы Next не превращал `/api/v1/assets` в `/api/v1/assets/`.
 
