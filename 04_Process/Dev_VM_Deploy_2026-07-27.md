@@ -16,7 +16,8 @@
 
 - `postgres` — PostgreSQL 17 с persistent Docker volume;
 - `backend` — Go API на внутреннем `:8090`, миграции запускаются при старте приложения;
-- `frontend` — Next.js runtime на публичном HTTP-порту, серверные proxy/BFF-запросы идут во внутренний backend.
+- `frontend` — Next.js runtime на loopback-порту `127.0.0.1:3000`, серверные proxy/BFF-запросы идут во внутренний backend.
+- `nginx` — host reverse proxy на публичных `80` и `443`, проксирует запросы в frontend `127.0.0.1:3000`.
 
 Deploy-файлы живут в parent repo: `deploy/production/`.
 
@@ -72,6 +73,16 @@ backend (`ref`, branch, subject). Уведомления читают этот �
 
 После открытия TCP `80` frontend публично доступен по `http://85.208.87.187/`. Публичный API-контур остаётся same-origin: `http://85.208.87.187/api/v1/*` обрабатывается Next.js rewrite и проксируется во внутренний backend `http://backend:8090/api/v1/*`. Backend-порт `8090` наружу не публикуется.
 
+На 2026-07-30 production-схема изменена: Docker больше не занимает публичный
+порт `80`; frontend опубликован только как `127.0.0.1:3000->3000/tcp`, а
+публичные `80/443` слушает host `nginx`. `nginx` проксирует `/` в
+`http://127.0.0.1:3000`. Для сырого IP `85.208.87.187` установлен
+self-signed TLS-сертификат, поэтому HTTPS требует `curl -k`/browser warning до
+появления домена и нормального сертификата. VM firewall (`ufw`, `iptables`) не
+блокирует `80/443`; если внешний `443` не открывается при локально рабочем
+`https://127.0.0.1/`, нужно открыть inbound TCP `443` в security group/cloud
+firewall провайдера.
+
 ## Операционный доступ
 
 SSH:
@@ -90,6 +101,15 @@ sudo docker compose --env-file .env ps
 sudo docker compose --env-file .env logs -f backend
 sudo docker compose --env-file .env logs -f frontend
 sudo docker compose --env-file .env up -d --build
+```
+
+Nginx:
+
+```bash
+sudo nginx -t
+sudo ss -lntp | grep -E ':80|:443'
+curl -I http://127.0.0.1:3000/prototype
+curl -I http://127.0.0.1/prototype
 ```
 
 Публичные URL:
