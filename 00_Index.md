@@ -11,6 +11,7 @@
 - [[Продуктовый_план_Fortis|Продуктовый план Fortis]]
 - [[Fortis_Product_Brief_for_Design|Product Brief для дизайна]]
 - [[05_Design/Fortis_Studio_UI_Styleguide_2026-06-23|Fortis Studio UI Styleguide 2026-06-23]]
+- [[05_Design/Fortis_Felt_UX_reference_scheme_2026-07-29|Fortis `/prototype`: Felt-like GIS workspace UX — 2026-07-29]]
 - [[05_Design/Prototype_GIS_UI_Audit_2026-07-10|Аудит интерфейса /prototype как профессиональной GIS-системы — 2026-07-10]]
 - [[05_Design/GIS_UX_Hardening_Spec_2026-07-15|Спецификация GIS UX Hardening для /prototype — 2026-07-15]]
 - [[03_Architecture/ADR-0012-fortis-design-system-foundations|ADR-0012: Fortis Design System Foundations]]
